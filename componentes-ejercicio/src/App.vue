@@ -1,26 +1,31 @@
+```vue
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <CarList :cars="cars" @toggle-details="toggleDetails" @remove-car="removeCar" />
+    <CarForm @add-car="addCar" />
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { ref } from 'vue';
+import CarList from './ListaCoches.vue';
+import CarForm from './FormularioCoches.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const cars = ref([
+  { marca: 'Nissan', modelo: 'GT-R™', showDetails: false },
+  { marca: 'Audi', modelo: 'S e-tron GT', showDetails: false },
+  { marca: 'Lamborghini', modelo: 'Murcielago LP640-4 Coupé', showDetails: false }
+]);
+
+const addCar = (newCar) => {
+  cars.value.push(newCar);
+};
+
+const toggleDetails = (index) => {
+  cars.value[index].showDetails = !cars.value[index].showDetails;
+};
+
+const removeCar = (index) => {
+  cars.value.splice(index, 1);
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
