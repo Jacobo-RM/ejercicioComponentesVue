@@ -1,6 +1,4 @@
 import App from '../../App.vue';
-import CarList from '../../ListaCoches.vue';
-import CarForm from '../../FormularioCoches.vue';
 
 describe('App', () => {
     it('mounts properly', () => {
