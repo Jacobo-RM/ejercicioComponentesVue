@@ -34,36 +34,29 @@ describe('App.vue', () => {
         });
     });
 
-    it('selectCar updates selected values correctly', () => {
+    it('selectCar actualiza los valores seleccionados correctamente', () => {
         const car = { marca: 'Audi', modelo: 'S e-tron GT' };
         const index = 1;
         wrapper.vm.selectCar(car, index);
 
         expect(wrapper.vm.selectedMarca).to.equal('Audi');
-        expect(wrapper.vm.selectedModelo).to.equal('S e-tron GT'); it('selectCar actualiza los valores seleccionados correctamente', () => {
-            const car = { marca: 'Audi', modelo: 'S e-tron GT' };
-            const index = 1;
-            wrapper.vm.selectCar(car, index);
-
-            expect(wrapper.vm.selectedMarca).to.equal('Audi');
-            expect(wrapper.vm.selectedModelo).to.equal('S e-tron GT');
-            expect(wrapper.vm.isUpdating).to.be.true;
-            expect(wrapper.vm.selectedIndex).to.equal(1);
-        });
-
-        it('updateCar actualiza el coche en la lista correctamente', () => {
-            const updatedCar = { marca: 'Tesla', modelo: 'Model S' };
-            wrapper.vm.selectedIndex = 1;
-            wrapper.vm.updateCar(updatedCar);
-
-            expect(wrapper.vm.cars[1]).to.deep.equal(updatedCar);
-            expect(wrapper.vm.selectedMarca).to.equal('');
-            expect(wrapper.vm.selectedModelo).to.equal('');
-            expect(wrapper.vm.isUpdating).to.be.false;
-        });
+        expect(wrapper.vm.selectedModelo).to.equal('S e-tron GT');
         expect(wrapper.vm.isUpdating).to.be.true;
         expect(wrapper.vm.selectedIndex).to.equal(1);
     });
+
+    it('updateCar actualiza el coche en la lista correctamente', () => {
+        const updatedCar = { marca: 'Tesla', modelo: 'Model S' };
+        wrapper.vm.selectedIndex = 1;
+        wrapper.vm.updateCar(updatedCar);
+
+        expect(wrapper.vm.cars[1]).to.deep.equal(updatedCar);
+        expect(wrapper.vm.selectedMarca).to.equal('');
+        expect(wrapper.vm.selectedModelo).to.equal('');
+        expect(wrapper.vm.isUpdating).to.be.false;
+    });
+    expect(wrapper.vm.isUpdating).to.be.true;
+    expect(wrapper.vm.selectedIndex).to.equal(1);
 
     it('updateCar actualiza el coche en la lista correctamente', () => {
         const updatedCar = { marca: 'Tesla', modelo: 'Model S' };
@@ -78,32 +71,6 @@ describe('App.vue', () => {
     });
 
     it('cancelUpdate restablece los valores seleccionados correctamente', () => {
-        wrapper.vm.selectedMarca = 'Audi';
-        wrapper.vm.selectedModelo = 'S e-tron GT';
-        wrapper.vm.isUpdating = true;
-        wrapper.vm.selectedIndex = 1;
-
-        wrapper.vm.cancelUpdate();
-
-        expect(wrapper.vm.selectedMarca).to.equal('');
-        expect(wrapper.vm.selectedModelo).to.equal('');
-        expect(wrapper.vm.isUpdating).to.be.false;
-        expect(wrapper.vm.selectedIndex).to.be.null;
-    });
-
-    it('updateCar updates the car in the list correctly', () => {
-        const updatedCar = { marca: 'Tesla', modelo: 'Model S' };
-        wrapper.vm.selectedIndex = 1;
-        wrapper.vm.updateCar(updatedCar);
-
-        expect(wrapper.vm.cars[1]).to.deep.equal(updatedCar);
-        expect(wrapper.vm.selectedMarca).to.equal('');
-        expect(wrapper.vm.selectedModelo).to.equal('');
-        expect(wrapper.vm.isUpdating).to.be.false;
-        expect(wrapper.vm.selectedIndex).to.be.null;
-    });
-
-    it('cancelUpdate resets selected values correctly', () => {
         wrapper.vm.selectedMarca = 'Audi';
         wrapper.vm.selectedModelo = 'S e-tron GT';
         wrapper.vm.isUpdating = true;
