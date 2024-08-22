@@ -24,14 +24,25 @@ describe('App.vue', () => {
         wrapper = mount(App, {
             data() {
                 return {
-                    cars,
-                    selectedMarca,
-                    selectedModelo,
-                    isUpdating,
-                    selectedIndex
+                    cars: cars.value,
+                    selectedMarca: selectedMarca.value,
+                    selectedModelo: selectedModelo.value,
+                    isUpdating: isUpdating.value,
+                    selectedIndex: selectedIndex.value
                 };
             }
         });
+    });
+
+    it('addCar agrega un coche nuevo a la lista correctamente', () => {
+        const newCar = { marca: 'BMW', modelo: 'i8' };
+        wrapper.vm.addCar(newCar);
+
+        expect(wrapper.vm.cars).to.include(newCar);
+        expect(wrapper.vm.selectedMarca).to.equal('');
+        expect(wrapper.vm.selectedModelo).to.equal('');
+        expect(wrapper.vm.isUpdating).to.be.false;
+        expect(wrapper.vm.selectedIndex).to.be.null;
     });
 
     it('selectCar actualiza los valores seleccionados correctamente', () => {
@@ -44,19 +55,6 @@ describe('App.vue', () => {
         expect(wrapper.vm.isUpdating).to.be.true;
         expect(wrapper.vm.selectedIndex).to.equal(1);
     });
-
-    it('updateCar actualiza el coche en la lista correctamente', () => {
-        const updatedCar = { marca: 'Tesla', modelo: 'Model S' };
-        wrapper.vm.selectedIndex = 1;
-        wrapper.vm.updateCar(updatedCar);
-
-        expect(wrapper.vm.cars[1]).to.deep.equal(updatedCar);
-        expect(wrapper.vm.selectedMarca).to.equal('');
-        expect(wrapper.vm.selectedModelo).to.equal('');
-        expect(wrapper.vm.isUpdating).to.be.false;
-    });
-    expect(wrapper.vm.isUpdating).to.be.true;
-    expect(wrapper.vm.selectedIndex).to.equal(1);
 
     it('updateCar actualiza el coche en la lista correctamente', () => {
         const updatedCar = { marca: 'Tesla', modelo: 'Model S' };
